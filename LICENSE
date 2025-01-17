@@ -1,0 +1,50 @@
+
+import pandas as pd
+import zipfile
+import os
+
+def extract_file_from_zip(zip_path, file_name, extract_to):
+    """
+    Extract a specific file from a ZIP archive.
+    """
+    with zipfile.ZipFile(zip_path, 'r') as z:
+        if file_name in z.namelist():
+            z.extract(file_name, extract_to)
+            return os.path.join(extract_to, file_name)
+        else:
+            raise FileNotFoundError(f"{file_name} not found in ZIP archive.")
+
+def load_data(filepath, is_zip=False, zip_file=None):
+    """
+    Load the dataset from a CSV file or ZIP archive.
+    """
+    if is_zip and zip_file:
+        filepath = extract_file_from_zip(filepath, zip_file, "../data/")
+    return pd.read_csv(filepath, sep=";")
+
+def clean_data(df):
+    """
+    Clean the dataset by encoding categorical variables.
+    """
+    categorical_columns = df.select_dtypes(include=["object"]).columns
+    df = pd.get_dummies(df, columns=categorical_columns, drop_first=True)
+    return df
+
+def feature_target_split(df, target_column="G3"):
+    """
+    Split the dataset into features and target variable.
+    """
+    X = df.drop(columns=[target_column])
+    y = df[target_column]
+    return X, y
+
+if __name__ == "__main__":
+    zip_path = "../data/student.zip"
+    csv_name = "student-mat.csv"
+    
+    data = load_data(zip_path, is_zip=True, zip_file=csv_name)
+    cleaned_data = clean_data(data)
+    X, y = feature_target_split(cleaned_data)
+    
+    print("Features shape:", X.shape)
+    print("Target shape:", y.shape)
