@@ -8,10 +8,3 @@ This project focuses on predicting students' academic performance (e.g., final g
 - **Machine Learning Models:** Testing multiple models like Linear Regression, Random Forest, and Neural Networks.
 - **Visualizations:** Displaying correlations and insights for better interpretability.
 
-## Installation
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/student-performance-prediction.git
-s.uci.edu/ml/datasets/Student+Performance).
-
-
