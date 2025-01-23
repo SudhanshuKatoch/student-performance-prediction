@@ -1,17 +1,20 @@
-# Student Performance Prediction 🎓📊
+🎓 Student Performance Predictor
 
-## Overview
-This project focuses on predicting students' academic performance (e.g., final grades) using machine learning models. By analyzing factors such as attendance, study habits, and socio-economic factors, we aim to provide insights that can assist educators and institutions in improving student outcomes.
+Overview
 
-## Features
-- **Data Exploration:** Understanding patterns and trends in student performance.
-- **Machine Learning Models:** Testing multiple models like Linear Regression, Random Forest, and Neural Networks.
-- **Visualizations:** Displaying correlations and insights for better interpretability.
+The Student Performance Predictor is an AI-powered tool that predicts student exam scores based on various academic, behavioral, and socio-economic factors. This application leverages a neural network model and provides an intuitive interface for user interaction. It is built using Python and Streamlit.
 
-## Installation
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/student-performance-prediction.git
-s.uci.edu/ml/datasets/Student+Performance).
+Features
 
+-AI-Powered Predictions: Employs a state-of-the-art neural network for highly accurate exam score predictions.
+
+-Detailed Input Options: Accepts a comprehensive range of student-related features, including academic, behavioral, and socio-economic factors.
+
+-Interactive and Intuitive UI: User-friendly interface with a professional, industry-standard design.
+
+-Dynamic Visualization: Displays input feature values through an interactive and visually appealing bar chart.
+
+-Realistic Scaling: Adjusts predictions dynamically to ensure scores are within a valid range (0-100%).
+
+-Customizable Framework: Designed for flexibility, allowing easy addition of features or model updates.
 
