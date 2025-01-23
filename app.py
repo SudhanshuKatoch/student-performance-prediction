@@ -5,10 +5,17 @@ from tensorflow.keras.models import load_model
 import joblib
 import os
 import altair as alt
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
+# Disable oneDNN optimizations warning
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 # Load models and scaler
-model_path = r"C:\student-performance-prediction\models\nn_model.h5"
-scaler_path = r"C:\student-performance-prediction\models\scaler.pkl"
+model_path = "models/nn_model.h5"
+scaler_path = "models/scaler.pkl"
 
 if not os.path.exists(model_path) or not os.path.exists(scaler_path):
     raise FileNotFoundError("Model or scaler not found. Please make sure they are trained and saved.")
@@ -119,21 +126,3 @@ if st.button("Predict"):
     st.write(input_data)
 
     # Improved visualization
-    chart_data = pd.DataFrame(input_data.values[0], index=input_data.columns, columns=["Value"])
-    chart = alt.Chart(chart_data.reset_index()).mark_bar().encode(
-        x=alt.X('index', title='Feature'),
-        y=alt.Y('Value', title='Value'),
-        color=alt.condition(
-            alt.datum.Value > 0,  # Condition for color
-            alt.value('steelblue'),  # If true
-            alt.value('lightgray')  # If false
-        ),
-        tooltip=['index', 'Value']
-    ).properties(
-        width=800,
-        height=300,
-        title="Input Features Visualization"
-    ).interactive()
-    st.altair_chart(chart)
-else:
-    st.write("Please use the sidebar to input details and click 'Predict'.")
